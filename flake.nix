@@ -46,7 +46,8 @@
             done
 
             for i in $(ls "$out"/bin/*.sh | grep -v javaenv); do
-              wrapProgram "$i" --prefix "PATH" : "${jdk}/bin/"
+              wrapProgram "$i" --prefix "PATH" : "${jdk}/bin/" \
+                --set-default JAVA_OPTIONS "-Dspring.autoconfigure.exclude=org.springframework.boot.autoconfigure.http.client.HttpClientAutoConfiguration -Dspring.devtools.restart.enabled=false"
             done
           '';
 
